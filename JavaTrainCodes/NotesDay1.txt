@@ -1,0 +1,329 @@
+Day 01 Notes
+============
+Dev Environment Setup
+=====================
+We need:
+1. JDK 17.0.7
+2. Eclipse 2023-06
+3. Notepad++
+
+Introduction to Java
+====================
+What is Java?
+- Java is an Object Oriented Programming Language and a Computing Platform
+
+Object Oriented 
+---------------
+Java uses the concept of class and object to create and maintain a software application
+
+Programming Language
+--------------------
+It is a formal language that follows some rules and conventions to achieve an outcome
+
+Computing Platform
+------------------
+It provides an environment to run and manage java based applications
+
+Java History
+============
+- Java was developed by Sir James Gosling at Sun Microsystems. 
+- Work on Java began in 1991.
+- Java was released in 1995.
+- Oracle acquired Sun on 20th April, 2009
+
+Java Editions & Versions
+========================
+There are 3 editions of Java: JSE, JEE and JME
+
+JSE
+---
+- JSE stands for Java Platform, Standard Edition
+- It is the core language. 
+- It is in the core of all other editions
+- It can be used to develop desktop applications
+- The latest version of JSE is JDK 20
+- The latest LTS version of JSE is JDK 17.0.7
+- The most used version of JSE is JDK 11
+
+JEE
+---
+There are 2 JEE platforms
+- Java Platform, Enterprise Edition
+- Jakarta Platform, Enterprise Edition
+
+Java EE was maintained by Oracle under the Java Community Process.
+
+On September 12, 2017, Oracle Corporation announced that it would submit Java EE to the Eclipse Foundation. 
+	
+From here on Java EE was renamed to Jakarta EE.
+- The last version of Java EE was Java EE 8.
+- The first version of Jakarta EE was Jakarta EE 8.
+- The latest version of Jakarta EE is Jakarta EE 10.
+
+- It is used to develop web and enterprise applications
+
+JME
+---
+- JME stands for Java Platform, Micro Edition
+- It is used for the development and deployment of portable code for embedded and mobile devices (micro-controllers, sensors, gateways, mobile phones, personal digital assistants, TV set-top boxes, printers).
+- The latest version is JME 8
+
+-----X-----X-----X-----X-----X-----X-----
+First Java Program
+==================
+Rules to create a basic Java program
+
+1. In Java all the code is written inside a class
+2. The class name should be in upper camel case
+3. First define the scope of class then write the code inside {}
+4. The file name MUST be same as the class name that contains the main method
+5. The extension of the file should be .java
+6. Inside the class define a method named main(){}
+7. The signature MUST be: public static void main(String[] args)
+8. The execution of code starts from main()
+9. The name of variables should be in lower camel case
+10. The names must be meaningful
+11. We have to look out for following 3 things:
+		1. Syntax : Rules of the language
+		2. Semantics : Logic of the program 
+		3. Conventions : Best Practices of programming
+
+12. Every Java programs runs in 2 steps: compilation and execution
+
+Step1: Compile the source code
+------------------------------
+- The program that we write as a programmer is known as Source code (.java)
+
+- Command: javac <name of file>.java
+- Example: javac Addition.java
+
+- Compilation is done by Compiler.
+- Compiler converts java source code (.java) into bytecode (.class)
+- It checks the syntax of source code.
+
+Step2: Run the executable file (.class)
+---------------------------------------
+- The file that we get post compilation has the extension .class
+- Java Runtime executes the .class file
+
+- Command: java <name of the executable>
+- For example: java Addition
+-----X-----X-----X-----X-----X-----X-----X-----
+Create project in Eclipse
+=========================
+Eclipse IDE configurations
+--------------------------
+1. Window -> Perspective -> Open Perspective -> Java
+
+2. Tabs we need -> Project Explorer, Console, Problems
+Window -> Show View -> Other -> [Select Tabs]
+
+3. Increase the font-size
+
+Project Hierarchy
+-----------------
+On the top, we have -> Project (CoreJavaPractice)
+Inside Project, we have -> Packages (ex01.basics)
+Inside package, we have -> Source code (Ex01Addition.java) 
+
+First Project
+-------------
+- Creating our 1st project: File -> New -> Java Project
+- Project Name: CoreJavaPractice
+- It should be in UpperCamelCase
+
+First Package
+-------------
+- Right click on src -> New -> Package
+- The package name should be in small caps
+- Packages are nothing but folder structure
+- ex01.basics will create a folder ex01 and inside it folder named basics 
+
+First Class
+-----------
+- Right click on package ex01.basics -> New -> class
+- The class name should be in upper camel case.
+- All the code will be inside this class
+
+Note: See the location of project: Right Click on Project name -> Show In -> System Explore
+
+Example 1: Program to add 2 numbers
+Question 1: Program to find area and circumference of circle. 
+
+Classes
+-------
+Java is all about Classes and Objects.
+
+Every class contains readymade variables and methods
+
+There are 2 types of classes:
+
+1. Predefined Classes
+	- These are the classes predefined in Java Library
+	- We have to learn to use them
+	- String, System, Math are predefined classes
+	- print(), println(), pow() are predefined methods
+	- PI is a predefined variable in class Math
+	
+2. User defined Classes
+	- These are the classes that we are creating
+	- We have to learn to create and use them
+	- Ex01Addition, Q01CircleMeasurement are userdefined classes
+	- main() is the user-defined method
+	- number1, number2, area, circumference etc are user defined variables.
+
+Be thoughtful about:
+1. Indentation
+2. Eclipse Shortcut Keys
+3. Saving the file after changes are made
+4. Watch out for Warnings
+5. Watch out for Errors
+6. Reading Console
+
+JDK, JRE, JVM
+=============
+What is JDK, JRE, JVM?
+----------------------
+JDK
+---
+- JDK stands for Java Development Kit
+- It is a software development environment used to develop Java applications.
+- It includes:
+	1.	Java Runtime Environment (JRE), 
+	2.	Interpreter/loader (java), 
+	3.	Compiler (javac)
+	4.	Archiver (jar)
+	5.	Documentation generator (Javadoc) and 
+	6.	Other tools needed in Java development.
+
+JRE
+---
+- JRE stands for Java Runtime Environment. 
+- Sometimes it is also referred as Java RTE
+- The Java Runtime Environment provides the minimum requirements for executing a Java application.
+- It consists of the JVM, core classes, and supporting files
+
+JVM
+---
+- JVM stands for Java Virtual Machine
+- When we execute a java program, a Runtime instance of JVM executes the java byte-code
+
+Summary
+-------
+ 	JDK = JRE + Development Tools
+ 	JRE = JVM + Runtime Library
+
+Compilation and Execution
+-------------------------
+- First we need to install a machine specific JVM on the system where we wish to run the code.
+- We create a java program, compile it and get an executable (.class) file that contains the byte code understood by the JVM.
+- Now this executable file will be converted into machine code and run/executed by the JVM.
+
+Note: 
+	Java is platform independent
+	JVM is platform dependent
+
+Images: 01_compile_execute.png
+
+Variables
+=========
+- Variables are used to hold data
+- It is mandatory to declare a variable before using it
+- Variable is visible only in scope where it is declared
+- There are 3 types of variables: instance, static and local variables.
+- Local variables are defined inside a method.
+- Variables should be named in lowerCamelCase.
+Ex: simpleInterest, noOfYears etc
+- A particular type of variable can hold only that type of data. What it means is : an integer variable can hold only integer value.
+
+Data type
+---------
+- We have to specify the type of data that a variable is going to hold well in advance. 
+- This is known as static typing.
+- Java is a statically and strongly typed language
+
+Static languages ex: Java, C, C++
+Dynamically/loosely typed languages: JavaScript, Python
+
+There are 2 types of data types:
+1. Primitive data type
+2. Reference data type
+
+Primitive data types
+--------------------
+There are 8 primitive data types in java
+
+- Integer data type (5): byte, short, int, long, char
+- Used to hold integer values of different range
+- variable declaration:
+byte b = 1;
+short s = 2;
+int i = 4;
+long l = 10;
+char c = '@';
+
+- Decimal Data Type (2): float, double
+- variable declaration
+float f = 1.2f;
+float f = 1.2F;
+double d = 1.2;
+
+Boolean data type
+-----------------
+boolean isPassed = true;
+boolean isAbsent = false;
+
+For additional info about data types, see images: 02_data_types.png, 03_integers.png, 04_double.png, 05_char_bool.png
+
+Example 2: Simple Interest
+Question 2: WAP to calculate the selling price of a product. Given are the buying price, discount percentage, GST percentage and profit margin
+
+Reference data type
+-------------------
+1. Class
+2. Interface
+3. Enum
+4. Array
+
+Literals
+--------
+The value that we assign to variables are known as Literals. 
+Ex: 2, 1.2, true, false, 'a'
+
+Type Casting
+------------
+- We cannot assign data of bigger type into variable of smaller data type.
+For ex: double d = 1.2;
+int i = d; // not allowed
+
+- Double is bigger than float and all decimal numbers are automatically considered double
+for ex: float num = 1.2; // it will give error
+
+- Hence we have to manually/explicitly tell Java that 1.2 is not double by appending f/F to it
+for ex: float num = 1.2f; 
+
+Identifiers
+-----------
+The names that we give to classes, interfaces, objects, variables, methods, enums are called identifiers
+
+Rules:
+1. We can use a-z, A-Z, 0-9, _, $ as an identifier
+2. The identifier cannot start with a number
+3. We can create an identifier of any length
+4. Space is not allowed in a name
+5. Keywords cannot be used as identifiers
+
+Ex: dellLaptop_001Screen, _productId, 
+$price, 
+addressOfTheCompanyWhoBoughtTheLaptopForItsOfficeWork
+
+cant use: 001_dell, total price
+
+Keywords
+--------
+These are pre-defined, reserved words that have special meanings to the compiler. 
+
+There are 65+ keywords in java. 
+
+Ex: class, public, static, void, int, float etc
+-----X-----X-----X-----X-----X-----X-----X-----
