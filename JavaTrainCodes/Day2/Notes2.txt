@@ -1,0 +1,375 @@
+ Day 02 Notes
+============
+Operators
+=========
+6 + 7
+Operand: The values on which operation is done is an operand. Here 6 and 7 are operands
+
+Operator: The operation on operands is done by operator. Here + is the operator
+Types of Operators
+------------------
+Based on the number of operands, there are 3 types of operators:
+1. Unary Operators
+2. Binary Operators
+3. Ternary Operator
+
+Unary Operators
+---------------
+There are 2 unary operators:
+1. ++ (Increment operator)
+2. -- (Decrement operator)
+
+Guess the output Questions
+
+Binary Operators
+----------------
+There are 4 types of Binary Operators
+1. Arithmetic Operators
+2. Relational Operators
+3. Logical Operators
+4. Assignment Operator
+
+1. Arithmetic Operators: +, -, *, /, %
+
+They work on numbers and return a number
+
+2. Relational Operators: <, >, <=, >=, ==, !=
+They work on numbers and return a boolean (true/false)
+
+3. Logical Operators : &, |, !
+They work on boolean and return a boolean
+
+& - AND Operator
+----------------
+True & True => True
+True & False => False
+
+False & True => False
+False & False => False
+
+| - OR Operator
+----------------
+True | True => True
+True | False => True
+
+False | True => True
+False | False => False
+
+Short circuit logical operators : && and ||
+
+A && B
+
+If A is false, B will not be evaluated
+If A is true, B will be evaluated
+
+&& -> It will not evaluate the expression on RHS if LHS is false and the final answer will be false
+
+|| -> It will not evaluate the expression on RHS if LHS is true and the final answer will be true
+
+Assignment Operator
+--------------------
+Simple Assignment Operator
+--------------------------
+SAO assigns the value of an expression on RHS into variable on LHS
+
+int total = n1 + n2;
+
+n1 + n2 = total; Wrong
+
+Compound Assignment Operator
+----------------------------
+x = x op y; x op= y
+
+int num = num op 10;
+num op= 10;
+
+1. x = x + 10 => x += 10 => Compound Addition Operator
+2. x = x - 10 => x -= 10 => Compound Subt. Operator
+3. x = x * 10 => x *= 10 => Compound Mult. Operator
+4. x = x / 10 => x /= 10 => Compound Quotient Operator
+5. x = x % 10 => x %= 10 => Compound Modulus Operator
+
+Ex: salary = salary + bonus;
+salary += bonus;
+
+balance = balance - withdrawalAmount
+balance -= withdrawalAmount
+balance += depositAmount
+
+Ternary Operator (?:)
+----------------
+Condition ? Expression 1 : Expression 2
+
+Ternary operator is a short form of single if-else statement
+
+int age = 16;
+String eligibility = "";
+
+if(age>=18) {
+	eligibility = "Eligible to vote";
+} else {
+	eligibility = "Not eligible to vote";
+}
+
+eligibility = age>=18 ? "Eligible" : "Not eligible";
+-----X-----X-----X-----X-----X-----X-----X-----
+Control Statements
+==================
+There are 3 types of control statements:
+1. Decision Control statements
+2. Repetition statements
+3. Jump statements
+
+Decision Control statements
+----------------------------
+There are 2 Decision Control statements:
+1. if - else
+2. switch-case-default
+
+if-else
+-------
+Example: If age<6, ticket price = 200, if age >=6, ticket price=400.
+
+Question: In a company an employee is paid as under: 
+
+1. If its basic salary is less than or equal to Rs. 10000, then incentive = 80% of basic salary. 
+
+2. If its salary is above Rs. 10000, then incentive = 50% of basic salary. 
+
+If the employee's salary is input by the user write a program to find his gross salary. 
+	
+	GS = Basic + Incentive
+
+2. switch-case-default
+----------------------
+1. We can have as many no of cases within switch
+2. The type of expression in switch can only be byte, short, int, char and String
+3. We cant use long, float, double, boolean
+
+Question: Create a switch-case-default to print the season when a month number is given
+
+For ex:
+if monthNumber = 12, 1, 2, Season = Winter
+if monthNumber = 3, 4, 5, Season = Summer
+if monthNumber = 6, 7, 8, Season = Rainy
+if monthNumber = 9, 10, 11, Season = Spring
+
+monthNumber = 2
+The season is winter
+
+Repetition statements
+---------------------
+There are 5 Repetition statements:
+1. while
+2. do-while
+3. for
+4. Enhanced for
+5. forEach
+
+While
+-----
+intialization;
+while(condition){
+	inc/dec;
+}
+
+Question 3: Calculating a number raised to a power.
+For example 2, 4 = 2*2*2*2 = 16 and 3, 3 = 3*3*3
+
+3, 7
+3X3X3X3X3X3X3 = 2187
+
+Do-while
+--------
+intialization;
+do {
+	inc/dec;
+}while(condition);
+
+Question 4: Print the table of a number.
+Output:
+
+Enter the number : 5
+Staring from : 6
+Ending to : 11
+
+Table
+-----
+5 X 6 = 30
+5 X 7 = 35
+5 X 8 = 40
+5 X 9 = 45
+5 X 10 = 50
+5 X 11 = 55
+
+for
+---
+for(intialization;condition;inc/dec){
+
+}
+
+Question: Create a program to print all the prime numbers between 2 numbers including the numbers
+
+For ex:
+Enter number 1 : 5
+Enter number 2 : 21
+Prime nos between 5 & 21 : 5, 7, 11, 13, 17, 19
+
+Enhanced for
+------------
+It is used in Collection Framework - study later
+
+for-each 
+--------
+It is also used in Collection Framework and it uses Lambda Expressions - Study later
+
+Jump Statements
+---------------
+There are 3 jump statements:
+1. break
+- breaks the innermost enclosing loop by default
+- we can make it break any other enclosing loop with labels
+
+2. continue
+- skips rest of the part of enclosing loop
+- we can make it skip any other enclosing loop with labels
+
+3. return : finishes the method, returns a value
+
+If a method is returning something, only then it can be used in an expression
+------------------------
+Class
+=====
+A class is a set of common properties and methods that are common to all objects of one type.
+
+Ex: Employee
+
+What all properties can be common to all employees?
+
+All employees work for some [company] and gets a [basic salary] for his/her [work].
+
+The company maintains a record of all employees' [names] and assigns each of them an [employee id].
+
+The company can [see the details] of the employee whenever needed.
+
+The company can [calculate total salary] for all the employees by evaluating basic salary, standard deductions and additions.
+
+So, properties of every employee can be
+- employee id
+- name
+- salary
+- company name
+
+And common process for every employee will be
+- display()
+- calculateTotalSalary()
+
+Syntax:
+
+class Employee {
+	// properties
+	int empId;
+	String name;
+	double salary;
+	String companyName;
+	// method
+	display();
+	calculateTotalSalary();
+}
+
+Object
+------
+Now that we have created a set of common properties, its time to create real world entities out of them
+
+Ex 1: Lets create a Genpact employee with name "Yash" who gets a basic salary of 35000 and is assigned an emp id 101.
+
+Employee e1 = new Employee();
+e1.empId = 101;
+e1.name = "Yash";
+e1.salary = 35000;
+e1.company = "Genpact";
+e1.calculateTotalSalary();
+
+Ex 2: Create another Genpact employee with name "Raj" who gets a basic salary of 55000 and is assigned an emp id 102.
+
+Employee e2 = new Employee();
+
+Yash and Raj are real Employees and so, these are objects of type Employee
+---------------------------------------------------
+Instance Variables
+------------------
+- empId, name, salary are instance variables of Employee class
+- Instance variables are also known as data members, attributes, properties, state etc
+
+new operator
+------------
+- new is a dynamic memory allocation operator.
+- It is used to allocate memory to an object at runtime.
+
+Constructor
+-----------
+A constructor is used to initialize the data members of an object. 
+
+There are 2 types of constructors:
+1. Default Constructor
+2. Parameterized Constructor
+
+Default constructor
+-------------------
+- Employee() is default constructor
+- It is also known as Non-parameterized constructor
+- It initializes the properties by default values
+	-> 0 for byte, short, int, long. 
+	-> 0.0 for float, double
+	-> false for boolean
+	-> null for String
+	-> '\u000' for char
+	
+- If we don't define our own constructor, java provides it automatically/implicitly.
+
+- If we define our own parameterized constructor, java stops providing the default constructor.
+
+Parameterized Constructor
+-------------------------
+Employee(int empId, String name, double salary){}
+
+The above is parameterized constructors
+- We can define as many parameterized constructors as we want
+
+Signature
+---------
+The name of the method along with the number, type and sequence of parameters is known as signature.
+
+ex: Following are signatures: 
+- display()
+- display(String)
+- Employee()
+- Employee(int, String, double)
+- Employee(String, double)
+
+Overloading
+-----------
+When the names of 2 methods are same but their signatures are different it is known as Overloading.
+
+Overloading can be achieved for both: methods and constructors
+
+Constructor Overloading
+-----------------------
+When overloading is done for constructors, it is known as Constructor overloading
+
+In class Employee:
+Employee(){}
+Employee(int e, String n, double s){}
+Employee(String n, double s){}
+
+Names are same but signatures differ.	
+
+Method Overloading
+------------------
+When overloading is done for methods, it is known as Method overloading
+
+display()
+display(String type)
+
+names are same but signatures are different.
+-----X-----X-----X-----X-----X-----X-----X-----
