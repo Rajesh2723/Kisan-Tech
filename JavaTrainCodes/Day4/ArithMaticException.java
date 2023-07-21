@@ -26,3 +26,30 @@ public class Throws {
 	}
 
 }
+/////////////age one
+package Ex10;
+
+public class AgeThrows {
+	static void validate(int age) throws ArithmeticException{
+		if(age>=18) {
+			System.out.println("fine");
+		}else {
+			
+			ArithmeticException a=new ArithmeticException("age is less than 18");
+			throw a;
+		}
+	}
+	public static void main(String[] args) {
+		System.out.println("start");
+		 int age=10;
+		try {
+			validate(age);
+		} catch (ArithmeticException e) {
+			System.out.println("1");
+			e.printStackTrace();
+		}
+		System.out.println("complete");
+
+	}
+
+}
