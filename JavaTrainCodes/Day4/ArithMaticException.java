@@ -53,3 +53,27 @@ public class AgeThrows {
 	}
 
 }
+//////////////functional interface haing exactly one abstract class havin non conreate
+package Function_interface;
+
+@FunctionalInterface
+interface Callable{
+	void call();
+}
+class Telehone implements Callable{
+
+	@Override
+	public void call() {
+		 System.out.println("call someone");
+		
+	}
+	
+}
+public class FunctionalInterfaceDemo {
+
+	public static void main(String[] args) {
+		 Callable v=new Telehone();
+		 v.call();
+	}
+
+}
