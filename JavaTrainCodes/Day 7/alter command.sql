@@ -23,5 +23,14 @@ ADD UNIQUE INDEX `student_email_UNIQUE`(`student_email`) VISIBLE;
 
 insert into students(student_id,student_name,enrollment_date)values(123,'Rakesh','2023-09-01');
 
-
+alter table students
+add student_course_fee int not null;
+insert into students(student_course_fee,student_id,student_name) values(1000,101,'Rajesh'),(3000,102,
+'rakesh');
 select * from students;
+update students set student_course_fee=7500 where student_id=123;
+
+
+
+
+update students set student_email='rajesh@gmail.com' where student_id=123;
