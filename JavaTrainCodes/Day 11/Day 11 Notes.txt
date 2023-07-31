@@ -1,0 +1,503 @@
+Day 11 Notes
+============
+MySQL Data Types
+================
+In MySQL, there are various data types available to store different types of data. Here is a list of commonly used data types:
+
+1. Numeric Data Types:
+   -  INT or INTEGER : Integer values (whole numbers).
+   -  DOUBLE : Double-precision floating-point numbers with larger precision than FLOAT .
+   -  DECIMAL : Fixed-point numbers with exact precision for decimal calculations.
+ 
+Double 
+-------
+Think of a DOUBLE as a floating-point number with a high degree of flexibility. It's like a container that can hold a wide range of values, including both very small and very large numbers. It's like having a ruler that can measure anything from tiny insects to massive buildings.
+
+For example, if you have a DOUBLE data type, you can use it to store numbers like 3.14 (pi), 1000, -42.5, or even very large numbers like 987654321.1234567. The DOUBLE can accommodate a wide variety of numeric values, but it may not be perfectly precise due to its floating-point nature.
+
+Decimal
+-------
+On the other hand, DECIMAL is more like a specialized ruler designed for precise measurements. It's similar to the DOUBLE, but with a fixed number of digits for both the whole number and the decimal part. It's like having a ruler specifically made to measure things to the exact millimeter.
+
+For example, if you have a DECIMAL(5, 2) data type, it means you can store numbers with up to 5 digits in total, and 2 of those digits can be used for the decimal part. So, you could store numbers like 123.45, 3.14, or 999.99. The DECIMAL data type ensures that the stored number is exact and precise to the specified decimal places.
+
+Decimal (5, 2) => 102.99
+
+Ranges: https://dev.mysql.com/doc/refman/8.0/en/integer-types.html 
+
+2. String Data Types:
+   -  CHAR : Fixed-length character strings.
+   -  VARCHAR : Variable-length character strings.
+   -  TEXT : Large text values with a maximum size of around 65,535 characters.
+
+3. Date and Time Data Types:
+   -  DATE : Dates in the format 'YYYY-MM-DD'.
+   -  TIME : Time values in the format 'HH:MM:SS'.
+   -  DATETIME : Date and time combined in the format 'YYYY-MM-DD HH:MM:SS'.
+   -  TIMESTAMP : Same as  DATETIME  but with automatic time zone conversion and update features.
+   -  YEAR : A year in a four-digit format.
+
+Date and Time Data Types
+------------------------ 
+DATE -> MySQL retrieves and displays DATE values in 'YYYY-MM-DD' format. The supported range is '1000-01-01' to '9999-12-31'. 
+
+DATETIME & TIMESTAMP
+--------------------
+Similarities
+------------
+Both are used for values that contain both date and time parts.
+
+In both the data is displayed in 'YYYY-MM-DD hh:mm:ss' format. 
+
+Difference
+----------
+In datetime, the range is '1000-01-01 00:00:00' to '9999-12-31 23:59:59'.
+
+In timestamp,the range is '1970-01-01 00:00:01' to '2038-01-19 03:14:07'.
+
+In summary, DATETIME is like writing a date and time on a calendar, allowing you to store any specific moment in time. TIMESTAMP is more like a time counter that measures the number of seconds since a reference point, often used for automatic time zone conversions and updates.
+
+4. Boolean Data Types:
+   -  BOOL  or  BOOLEAN : A boolean value representing true or false.
+	
+5. Binary Data Types:
+   -  BLOB : Binary Large Object for storing binary data like images or documents.
+   -  BINARY : Fixed-length binary data.
+   -  VARBINARY : Variable-length binary data.
+
+6. Enumerated and Set Data Types:
+   -  ENUM : A list of allowed string values.
+   -  SET : A collection of string values, where each value can be chosen independently.
+
+7. Spatial Data Types:
+   -  GEOMETRY : For spatial data like points, lines, and polygons.
+   -  POINT : A single spatial point.
+   -  LINESTRING : A line composed of multiple points.
+   -  POLYGON : A closed shape defined by multiple points.
+
+Ex: Point
+
+Constraints
+------------
+There are following constraints:
+1. PK : If checked => This column is a primary key
+2. NN : If checked => Inserting a value is compulsory
+3. UQ : If checked => Each entry must be unique
+4. AI : If checked => The integer field will be autoincrememnted
+
+Functions in MySQL
+==================
+MySQL has many built-in functions.
+
+There are following functions:
+1. Aggregate Functions
+2. String Functions
+3. Date and time functions
+4. Numeric Functions
+5. Spatial Functions
+
+Aggregate Functions
+-------------------
+count(), min(), max(), sum() and avg()
+
+String Functions
+----------------
+There are many functions to work on String data type. Here are a few important ones:
+
+1. CONCAT(str1, str2, ...)
+Description: Concatenates two or more strings together and returns the resulting string. 
+
+2. SUBSTRING(str, start, length)
+Description: Extracts a portion of the input string str starting from the position specified by start and of the length specified by length. 
+
+3. UPPER(str)
+Description: Converts all characters in the input string str to uppercase.
+
+4. LOWER(str)
+Description: Converts all characters in the input string str to lowercase.
+
+5. LENGTH(str)
+Description: Returns the number of characters in the input string str. 
+----------------------------
+Numeric Functions
+=================
+There are many numeric functions.
+Aggregate functions are a sub type of numeric functions.
+Following are 5 more such functions:
+
+1. ROUND(value, decimals): Rounds a numeric value to the specified number of decimals.
+Example: ROUND(4.567, 2) returns 4.57.
+
+2. CEIL(value): Returns the smallest integer greater than or equal to a given value.
+Example: CEIL(3.25) returns 4.
+
+3. FLOOR(value): Returns the largest integer less than or equal to a given value.
+Example: FLOOR(3.75) returns 3.
+
+4. ABS(value): Returns the absolute (non-negative) value of a numeric expression.
+Example: ABS(-7) returns 7.
+
+5. POWER(base, exponent): Raises a numeric value to a specified power.
+Example: POWER(2, 3) returns 8.
+
+Date and Time Functions
+------------------------
+1. NOW(): Returns the current date and time as a datetime value.
+Example: SELECT NOW() returns the current date and time.
+
+2. DATE_FORMAT(date, format): Converts a date or datetime value to a formatted string based on the specified format.
+
+Example: SELECT DATE_FORMAT(date_column, '%Y-%m-%d') formats the date_column as 'YYYY-MM-DD'.
+
+3. DATE_ADD(date, INTERVAL value unit): Adds a specific interval to a date or datetime value.
+Example: SELECT DATE_ADD(some_date, INTERVAL 7 DAY) adds 7 days to some_date.
+
+4. DATEDIFF(end_date, start_date): Calculates the difference in days between two dates.
+Example: SELECT DATEDIFF('2023-07-30', '2023-07-25') returns 5.
+
+5. EXTRACT(unit FROM date): Extracts a specific part (unit) from a date or datetime value.
+Example: SELECT EXTRACT(YEAR FROM some_date) returns the year part of some_date.
+
+Example:
+
+CREATE DATABASE testdb;
+USE testdb;
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    salary DECIMAL(10, 2),
+    hire_date DATE,
+	city VARCHAR(50),
+    coordinates POINT
+);
+
+INSERT INTO employees (first_name, last_name, salary, hire_date, city, coordinates)
+VALUES
+    ('Aarav', 'Sharma', 25000.50, '2023-01-15', 'New York', POINT(-74.006, 40.7128)),
+    ('Aisha', 'Verma', 35000.75, '2022-09-05', 'Los Angeles', POINT(-118.2437, 34.0522)),
+    ('Vikram', 'Singh', 18000.25, '2023-04-22', 'London', POINT(-0.1278, 51.5074));
+
+1. Concatenation:
+Combine the first_name and last_name columns to create a full name for each employee.
+
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees;
+
+Use space(1) instead of ' '
+
+SELECT CONCAT(first_name, space(1), last_name) AS full_name
+FROM employees;
+
+2. Substring
+SELECT substring(first_name, 2, 3) AS upper_first_name
+FROM employees;
+
+3.Upper
+SELECT UPPER(first_name) AS upper_first_name
+FROM employees;
+
+4.Lower
+SELECT LOWER(last_name) AS lower_last_name
+FROM employees;
+
+5.LENGTH
+SELECT last_name, LENGTH(last_name) FROM employees;
+
+6. Round()
+-- Round salary to two decimal places
+SELECT first_name, last_name, ROUND(salary, 2) AS rounded_salary
+FROM employees;
+
+7. CEIL()
+-- Calculate the ceil value of the salary for each employee
+
+SELECT first_name, last_name, CEIL(salary) AS ceiled_salary
+FROM employees;
+
+8. Floor()
+-- Calculate the floor value of the salary for each employee
+SELECT first_name, last_name, FLOOR(salary) AS floored_salary
+FROM employees;
+
+9. ABS()
+-- Calculate the absolute value of the salary for each employee
+SELECT first_name, last_name, ABS(salary) AS absolute_salary
+FROM employees;
+
+10. POWER()
+-- Calculate the salary squared for each employee
+SELECT first_name, last_name, POWER(salary, 2) AS salary_squared
+FROM employees;
+
+11. NOW()
+-- Get the current date and time
+SELECT NOW() AS current_date_time;
+
+12. DATE_FORMAT
+-- Format the hire_date to display only the year
+SELECT first_name, last_name, DATE_FORMAT(hire_date, '%Y') AS hire_year
+FROM employees;
+
+13. DATE_ADD
+-- Add 3 months to the hire_date for each employee
+SELECT first_name, last_name, DATE_ADD(hire_date, INTERVAL 3 MONTH) AS new_hire_date
+FROM employees;
+
+14. DATEDIFF
+-- Calculate the number of days employed for each employee (until today)
+SELECT first_name, last_name, DATEDIFF(NOW(), hire_date) AS days_employed
+FROM employees;
+
+15. Year, Month, Day between 2 dates
+
+For this we need calculations
+
+To get the no of days, months and years between 2 dates use:
+
+SELECT
+	TIMESTAMPDIFF( YEAR, hire_date, now() ) as _year
+    , TIMESTAMPDIFF( MONTH, hire_date, now() ) % 12 as _month
+    , FLOOR( TIMESTAMPDIFF( DAY, hire_date, now() ) % 30.4375 ) as _day
+FROM 
+    employees;
+
+Reference: https://stackoverflow.com/questions/25640011/mysql-calculate-age-by-year-month-and-day
+
+15. EXTRACT
+-- Extract the month from the hire_date for each employee
+SELECT first_name, last_name, EXTRACT(MONTH FROM hire_date) AS hire_month
+FROM employees;
+
+Spatial Functions
+-----------------
+MySQL provides functions to perform various operations on spatial data.
+
+1. ST_X() : To get x-coordinate of point
+2. ST_Y() : To get y-coordinate of point
+
+SELECT ST_X(coordinates) as longitude, ST_Y(coordinates) as latitude
+FROM employees;
+
+Reference: https://dev.mysql.com/doc/refman/8.0/en/spatial-function-reference.html
+
+Joins in SQL
+============
+Types of Joins
+
+There are following 4 types of Joins:
+1. Inner Join
+2. Left Join
+3. Right Join
+4. Full/Cross Join
+
+Ex:
+
+create schema sql_joins;
+
+use sql_joins;
+
+CREATE TABLE customers (
+  customer_id int NOT NULL,
+  customer_name varchar(45) NOT NULL,
+  customer_email varchar(45) NOT NULL,
+  PRIMARY KEY (customer_id)
+);
+
+INSERT INTO customers VALUES (1,'Vinod','vinod@gmail.com'),
+(2,'Ajay','ajay@rediff.com'),
+(3,'Jayesh','jay@yahoo.com'),
+(5,'Hiten','hiten@gmail.com'), (8,'Vijay','vijay@gmail.com');
+
+CREATE TABLE orders (
+  order_id int NOT NULL,
+  order_date date NOT NULL,
+  order_amount double DEFAULT NULL,
+  customer_id int DEFAULT NULL,
+  PRIMARY KEY (order_id)
+);
+
+INSERT INTO orders VALUES 
+(1,'2022-05-05',890,1),
+(2,'2022-05-06',765,2),
+(3,'2022-06-05',200,1),
+(4,'2021-05-05',389,3),
+(5,'2021-05-05',800,6),
+(6,'2022-05-05',800,7);
+
+Inner Join
+----------
+This type of Join returns those records which have matching values in both the tables. 
+
+Problem : Fetching the details of those customers who have made an
+
+Query:
+ 
+SELECT c.customer_id, c.customer_name, o.order_date, o.order_id
+FROM customers AS c
+INNER JOIN orders AS o
+ON c.customer_id = o.customer_id;
+
+Left Outer Join
+---------------
+The LEFT JOIN or LEFT OUTER JOIN returns all records from the left table and also those records which satisfy a condition from the right table. 
+
+Problem : Fetching the data of all the customers whether or not they have made an order
+
+Query:
+
+SELECT c.customer_id, c.customer_name, o.order_date, o.order_id
+FROM customers AS c
+LEFT JOIN orders AS o
+ON c.customer_id = o.customer_id;
+
+Right Join
+----------
+The RIGHT JOIN or RIGHT OUTER JOIN returns all records from the right table and also those records which satisfy a condition from the left table. 
+
+Problem : Fetching the data of all the orders whether they have been ordered by the customers or not
+
+Query:
+
+SELECT o.order_id, o.order_date, c.customer_id, c.customer_name
+FROM customers AS c
+RIGHT JOIN orders AS o
+ON c.customer_id = o.customer_id;
+
+Full/Cross Join (Full Outer Join)
+---------------------------------
+FULL JOIN or the FULL OUTER JOIN returns all this records which either have a match in the left (Table 1) or the right (Table 2) table.
+
+Problem: Fetching the data of all the orders and customers
+
+MySQL does not support cross joi or full oute join.
+But to get the deseired result with can perform union on left and roght joins
+
+Query:
+
+(SELECT o.order_id, o.order_date, c.customer_id, c.customer_name
+FROM customers AS c
+LEFT JOIN orders AS o
+ON c.customer_id = o.customer_id) 
+
+UNION
+
+(SELECT o.order_id, o.order_date, c.customer_id, c.customer_name
+FROM customers AS c
+RIGHT JOIN orders AS o
+ON c.customer_id = o.customer_id) ;
+
+Normalization
+-------------
+Normalization 
+
+1. Is a process of organizing the data in database 
+2. Reduces data redundancy
+3. Improves data integrity
+
+There are following Normal Forms:
+1. 1NF
+2. 2NF
+3. 3NF
+4. BCNF (Boyce-Codd Normal Form)
+5. 4NF
+
+First Normal Form - 1NF
+-----------------------
+- Each attribute of a table must have atomic (single) values
+
+Second Normal Form - 2NF
+------------------------
+- A table is said to be in 2NF if both the following conditions hold:
+	1. Table is in 1NF (First normal form)
+	2. No non-prime attribute is dependent on the proper subset of any candidate key of table.
+	
+Third Normal Form - 3NF
+-----------------------
+- A table is said to be in 3NF if both the following conditions hold:
+	1. The table should be in the Second Normal Form.
+	2. There should be no transitive dependency for non-prime attributes
+
+Reference: https://www.youtube.com/watch?v=xoTyrdT9SZI&list=PLLGlmW7jT-nTr1ory9o2MgsOmmx2w8FB3&index=1
+
+Indexes
+-------
+- Indexes are used to optimize query performance by allowing the database engine to quickly find and retrieve data based on the values stored in specific columns. 
+- An index is a data structure that provides a quick lookup to locate the rows containing particular values or meet specific conditions. 
+- Without indexes, the database would have to perform a full table scan, which can be inefficient and slow, especially for large tables.
+
+- Indexes are crucial for improving the speed of data retrieval and the overall performance of database queries. 
+
+- They work similarly to the index of a book, allowing you to quickly find the pages that contain specific information.
+
+Here are some key points about indexes in MySQL:
+
+Types of Indexes: MySQL supports various types of indexes, including:
+
+1. B-tree Index: The most common type of index used in MySQL, suitable for all kinds of queries.
+
+2. Unique Index: Enforces uniqueness on the indexed column, preventing duplicate values.
+
+3. Primary Key: A specific type of unique index that uniquely identifies each row in the table. Each table can have only one primary key.
+
+4. Full-Text Index: Used for full-text searches on text-based columns.
+
+5. Indexing Columns: You can create indexes on one or more columns of a table, depending on your query requirements.
+
+6. Implicit Indexes: Certain constraints, such as PRIMARY KEY, UNIQUE, and FULLTEXT, create indexes implicitly on the respective columns.
+
+Creating Indexes 
+----------------
+Indexes can be created when defining a table or added to an existing table using the 
+
+CREATE INDEX or ALTER TABLE ADD INDEX statements.
+
+Syntax: CREATE INDEX index_name ON table-name (column-name);
+
+Query:
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    price DECIMAL(10, 2)
+);
+
+-- Create an index on the product_name column
+CREATE INDEX idx_product_name ON products (product_name);
+
+Create index of only those columns that are frequently serached
+
+Delete Index:
+
+Syntax: DROP INDEX  ON table_name
+---------------------------------
+Temporay Table
+--------------
+Imagine you are working on a big puzzle, and you need a separate space to keep some puzzle pieces while you are working on them. In MySQL, a temporary table is like that separate space.
+
+A temporary table in MySQL is a special type of table that exists only for a short time, like a temporary workspace. It is like a whiteboard or a notepad that you use to jot down some notes while you are doing a task, but you don't need to keep those notes forever.
+
+So, in simple terms, a temporary table in MySQL is like a short-lived workspace where you can store data temporarily while you are working on something, and it automatically goes away when you are done.
+
+CREATE SCHEMA test;
+
+USE test;
+
+SHOW tables;
+
+CREATE TEMPORARY TABLE user (
+    userID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(15) NOT NULL
+);
+
+INSERT INTO user 
+VALUES 
+(1, 'Jay'),
+(2, 'Yash'),
+(3, 'Ravi');
+
+SELECT * from user;
+
+show tables;
+-------------------------
