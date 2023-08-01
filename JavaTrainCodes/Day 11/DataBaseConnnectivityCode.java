@@ -1,29 +1,63 @@
-package dml;
+package ex01.ddl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InsertData {
+public class Ex01CreateDbDemo {
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws ClassNotFoundException,SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection con=
+				DriverManager.getConnection("jdbc:mysql://localhost:3306","root","1234");
+       Statement stmt=con.createStatement();
+       String query="Create Schema compan";
+       int res=stmt.executeUpdate(query);
+       if(res==1) {
+    	   System.out.println("created");
+       }else {
+    	   System.out.println(" nt created");
+       }
+       stmt.close();
+       con.close()
+;	}
+
+}
+===================================================
+
+
+package ex01.ddl;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Ex02CreateTableDemo {
+
+	public static void main(String[] args) throws ClassNotFoundException,SQLException {
 		
 		
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/company","root","123@45");
-		Statement stmt=con.createStatement();
-		String query="INSERT INTO employee(name, salary, doj, is_on_leave) \r\n"
-				+ "VALUES (\"manish\",30000,\"2023-02-12\",true)";
-		int result=stmt.executeUpdate(query);
-		if(result==1) {
-			System.out.println("data inserted  created");
-		}
-		else {
-			System.out.println("cant create");
-		}
-		stmt.close();
-		con.close();
-	}
+		Connection con=
+				DriverManager.getConnection("jdbc:mysql://localhost:3306/compan","root","1234");
+       Statement stmt=con.createStatement();
+       String query="CREATE TABLE employee (\r\n"
+       		+ "  _id INT NOT NULL AUTO_INCREMENT,\r\n"
+       		+ "  name VARCHAR(30) NOT NULL,\r\n"
+       		+ "  salary DOUBLE NOT NULL,\r\n"
+       		+ "  doj DATE NOT NULL,\r\n"
+       		+ "  is_on_leave BIT(1) NOT NULL,\r\n"
+       		+ "  PRIMARY KEY (_id))";
+       int res=stmt.executeUpdate(query);
+       if(res==0) {
+    	   System.out.println("created");
+       }else {
+    	   System.out.println(" nt created");
+       }
+       stmt.close();
+       con.close()
+;	}
 
 }
