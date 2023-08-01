@@ -1,5 +1,9 @@
 package ex02ddm;
 
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -25,6 +29,21 @@ public class RetriveData {
 				 double salary=rSet.getDouble("salary");
 				 Date dateOfJoining=rSet.getDate("doj");
 				 System.out.println(id+","+name+","+salary+","+dateOfJoining);
+				 String bio=rSet.getString("bio");
+				 Blob pic=rSet.getBlob("picture");
+				 String outputFilePath="Files/fetchedData.txt";
+				 FileWriter fwriter=new FileWriter(outputFilePath);
+				 fwriter.write(bio);
+				 if(fwriter!=null)fwriter.close();
+				 String outputImageFile="Files/fetchedImage.jpg";
+				 InputStream iStream=pic.getBinaryStream();
+				 FileOutputStream f=new FileOutputStream(outputImageFile);
+				 byte[] buffer=new byte[1024];
+				 int bytesRead;
+				 while((bytesRead=iStream.read(buffer))!=-1) {
+					 f.write(buffer,0,bytesRead);
+				 }
+				 
 			 }
 		 }catch(Exception e) {
 			 
