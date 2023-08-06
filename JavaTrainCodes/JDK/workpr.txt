@@ -1,0 +1,177 @@
+
+
+import java.sql.*;
+import java.util.*;
+import Dbutils.DButils;
+
+public class BookMain {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static Connection connection;
+
+    public static void main(String[] args)  {
+    	
+		
+        try {
+            connection = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.PWD);
+
+            boolean exit = false;
+            while (!exit) {
+                printMenu();
+                int option = scanner.nextInt();
+
+                switch (option) {
+                    case 1:
+                        addBook();
+                        break;
+                    case 2:
+                        updateBook();
+                        break;
+                    case 3:
+                        deleteBook();
+                        break;
+                    case 4:
+                        viewBooks();
+                        break;
+                    case 5:
+                        exit = true;
+                        System.out.println("Thanks for visiting, come soon!!");
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please choose a valid option.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    private static void printMenu() {
+    	System.out.println("WELCOME TO BOOK DATABASE");
+        System.out.println("\nSelect an option:\n");
+        System.out.println("1. Add a Book");
+        System.out.println("2. Update a Book");
+        System.out.println("3. Delete a Book");
+        System.out.println("4. View Books");
+        System.out.println("5. Exit");
+        System.out.print("\nYour option: ");
+    }
+
+    private static void addBook() {
+        scanner.nextLine(); 
+        System.out.print("\nEnter book name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter book price: ");
+        double price = scanner.nextDouble();
+        scanner.nextLine(); 
+        System.out.print("Enter book author: ");
+        String author = scanner.nextLine();
+
+
+        try {
+            String insertQuery = "INSERT INTO book1 (name, price, author) VALUES (?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(insertQuery)) {
+                pstmt.setString(1, name);
+                pstmt.setDouble(2, price);
+                pstmt.setString(3, author);
+                pstmt.executeUpdate();
+            }
+
+            System.out.println("\n[Book added successfully]");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void updateBook() {
+        System.out.print("\nEnter the book id to update: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); 
+
+        try {
+            String selectQuery = "SELECT * FROM book WHERE id = ?";
+            try (PreparedStatement selectStmt = connection.prepareStatement(selectQuery)) {
+                selectStmt.setInt(1, id);
+                try (ResultSet resultSet = selectStmt.executeQuery()) {
+                    if (resultSet.next()) {
+                        System.out.print("Enter new book name: ");
+                        String newName = scanner.nextLine();
+                        System.out.print("Enter new book price: ");
+                        double newPrice = scanner.nextDouble();
+                        scanner.nextLine(); 
+                        System.out.print("Enter new book author: ");
+                        String newAuthor = scanner.nextLine();
+
+                        String updateQuery = "UPDATE book1 SET name = ?, price = ?, author = ? WHERE id = ?";
+                        try (PreparedStatement updateStmt = connection.prepareStatement(updateQuery)) {
+                            updateStmt.setString(1, newName);
+                            updateStmt.setDouble(2, newPrice);
+                            updateStmt.setString(3, newAuthor);
+                            updateStmt.setInt(4, id);
+                            updateStmt.executeUpdate();
+                        }
+
+                        System.out.println("\nBook updated successfully.");
+                    } else {
+                        System.out.println("\nBook with ID " + id + " not found.");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void deleteBook() {
+        System.out.print("\nEnter the book id to delete: ");
+        int id = scanner.nextInt();
+
+        try {
+            String deleteQuery = "DELETE FROM book1 WHERE id = ?";
+            try (PreparedStatement pstmt = connection.prepareStatement(deleteQuery)) {
+                pstmt.setInt(1, id);
+                int rowsAffected = pstmt.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("\nBook deleted successfully.");
+                } else {
+                    System.out.println("\nBook with ID " + id + " not found.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void viewBooks() {
+        try {
+            String selectQuery = "SELECT * FROM book1";
+            try (Statement stmt = connection.createStatement();
+                 ResultSet resultSet = stmt.executeQuery(selectQuery)) {
+                System.out.println("\nid\tname\tprice\tauthor");
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    double price = resultSet.getDouble("price");
+                    String author = resultSet.getString("author");
+                    System.out.println(id + "\t" + name + "\t" + price + "\t" + author);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
